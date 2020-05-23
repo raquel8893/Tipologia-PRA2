@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage{setspace}  
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Dataset: Accidentes de aviÃ³n acontecidos a nivel mundial},
+            pdfauthor={Teguayco GutiÃ©rrez GonzÃ¡lez},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Práctica 2: Limpieza y análisis de datos}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Raquel Gómez Pérez y Jorge Serra Planelles}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{9 de junio de 2020}
+
+\usepackage[spanish]{babel}
+
+\begin{document}
+\maketitle
+
+\hypertarget{resolucion}{%
+\section{Resolución}\label{resolucion}}
+
+\hypertarget{descripcion}{%
+\subsection{1. Descripción del dataset}\label{descripcion}}
+¿Por qué es importante y qué pregunta/problema pretende responder?.
+
+	
+\hypertarget{seleccion}{%
+\subsection{2. Integración y selección de los datos de interés a analizar}\label{seleccion}}
+
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf.\\  
+\item
+  \textbf.\\
+\item
+  \textbf.\\  
+\end{itemize}
+
+\newpage
+
+\hypertarget{limpieza}{%
+\subsection{3. Limpieza de los datos}\label{limpieza}} 
+
+\hypertarget{ceros}{%
+\subsubsection{3.1 Elementos vacíos}\label{ceros}}
+¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?. 
+
+\hypertarget{extremos}{%
+\subsubsection{3.2 Valores extremos}\label{extremos}}
+Identificación y tratamiento de valores extremos.
+\hypertarget{analisis}{%
+\subsection{4. Análisis de los datos}\label{analisis}}
+
+\hypertarget{seleccion}{%
+\subsubsection{4.1 Selección del grupo de datos}\label{seleccion}}
+Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar). 
+\hypertarget{normalidad}{%
+\subsubsection{4.2  Normalidad y homogeneidad de la varianza}\label{normalidad}}
+Comprobación de la normalidad y homogeneidad de la varianza. 
+
+\hypertarget{estadistica}{%
+\subsubsection{4.3  Pruebas estadísticas para comparar los grupos de datos}\label{estadistica}}
+Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes. 
+
+\hypertarget{representacion}{%
+\subsection{5. Representación de los resultados}\label{representacion}}
+Representación de los resultados a partir de tablas y gráficas. 
+\hypertarget{resolucion}{%
+\subsection{6. Resolución del problema}\label{resolucion}}
+Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema? 
+\hypertarget{codigo}{%
+\subsection{7. Código}\label{codigo}}
+
+Tanto el código fuente escrito para la extracción de datos como el
+dataset generado pueden ser accedidos a través de
+\href{https://github.com/raquel8893/Tipologia-PRA2}{este enlace}.
+
+\hypertarget{recursos}{%
+\section{Recursos}\label{recursos}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+.\\
+\item
+.\\
+\item
+.\\
+\item
+.\\
+\item
+.\\
+
+\end{enumerate}
+
+\hypertarget{contribuciones}{%
+\section{Contribuciones al trabajo}\label{contribuciones}}
+\begin{tabular}{| c | c |}
+\hline
+Contribuciones & Firma \\ \hline
+Investigación previa & RGP, JSP \\
+Redacción de las respuestas & RGP, JSP \\
+Desarrollo código & RGP, JSP \\ \hline
+\end{tabular}
+
+\end{document}
