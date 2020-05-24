@@ -95,24 +95,67 @@
 
 \hypertarget{descripcion}{%
 \subsection{1. Descripción del dataset}\label{descripcion}}
-¿Por qué es importante y qué pregunta/problema pretende responder?.
+
+El conjunto de datos que vamos a analizar se ha obtenido a partir de este enlace https://www.kaggle.com/c/titanic/.\\ Este conjunto de datos contiene información de parte de los pasajeros que subieron a bordo del transatlántico Titanic, el 10 de abril de 1912 desde el puerto Southampton y los pasajeros que se incorporaron en los puertos de Cherburgo, Francia, y en Queenstown en Irlanda. Entre estos pasajeros se encuentran pasajeros de muy diferentes clases sociales. En el incidente ocurrido el 14 de abril de 1912, murieron 1514 personas de las 2223 que abordaron. El estricto protocolo de salvamento que se utilizó seguía el principio "Mujeres y niñas primero".\\
+En los dataset cada fila representa a una persona. Hay información de un total de 1309 pasajeros, divididos en dos dataset: 891 en el conjunto de train y 418 en el conjunto de test. Las columnas describen diferentes atributos sobre la persona, tenemos un total de 12 columnas en el dataset de train, y 11 columnas en el dataset de test, ya que no se incluye la columna survived que es la que se desea predecir.
+\begin{itemize}
+\tightlist
+\item
+  \textbf{PassengerId:} Número de identificación del pasajero.\\  
+\item
+  \textbf{Survived:} Indica si la persona sobrevivió o no al incidente (0 no sobrevivió, 1 sobrevivió).\\
+\item
+  \textbf{Pclass:} Clase en la que viajaba el pasajero (1ª, 2ª o 3ª).\\ 
+\item
+  \textbf{Name:}Nombre del pasajero.\\ 
+\item
+  \textbf{Sex:} Sexo del pasajero, femenino o masculino.\\
+\item
+  \textbf{Age:} Edad del pasajero.\\
+\item
+  \textbf{SibSp:} Número de hermanos que el pasajero tenía a bordo.\\
+\item
+  \textbf{Parch:} Número de padres (del pasajero) que estaban a bordo.\\
+\item
+  \textbf{Ticket:} Número de ticket que el pasajero entregó al abordar.\\
+  \item
+  \textbf{Fare:} Indica el precio que el pasajero pago para obtener su pasaje.\\
+  \item
+  \textbf{Cabin:} Indica la cabina que fue asignada al pasajero.\\
+  \item
+  \textbf{Embarked:} Indica el puerto donde el pasajero abordó (C = cherbourg, Q = Queenstown, S= Southampton).\\
+\end{itemize}
+
+A partir de este conjunto de datos se pretende responder a la pregunta de qué variables fueron las más determinantes sobre la supervivencia o no de los pasajeros, comprobando por ejemplo cuanto influyó la posición económica en el momento del rescate o si realmente se cumplió el protocolo "mujeres y niños primero" a la hora de evacuar.
 
 	
 \hypertarget{seleccion}{%
 \subsection{2. Integración y selección de los datos de interés a analizar}\label{seleccion}}
 
+Comenzamos con la carga de datos, para realizar la selección de las variables de interés. Vamos a realizar la práctica con el lenguaje de programación Python.
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf.\\  
-\item
-  \textbf.\\
-\item
-  \textbf.\\  
-\end{itemize}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{carga_datos}
+\end{center}
 
-\newpage
+Mostramos también el tipo de datos y un resumen de las variables
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{tipo_datos}
+\end{center}
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{resumen_datos}
+\end{center}
+
+
+Analizadas las variables presentes en el dataset, las variables más representativas son: survived, pcclas, sexo, age y fare. el atributo survival es imprescindible para saber quien sobrevivió al incidente, los atributos pcclas y fare, pueden darnos noción de que tanto influye la posición económica al momento de rescatar a alguien, con el atributo de age y sex, podremos corroborar si realmente al momento de evacuar, mujeres y niños fueron prioridad. Los atributos omitidos: name, sibsp, parch, ticket, cabin, *embarked. El nombre de los pasajeros almacenado en el atributo name puede llegar a influenciar el si sobrevivió o no, dado que algunas personas su nombre es “importante” pero con el fare y clase en la que viajaba es posible saber si tenía buena posición económica. sibsp y parch indican si un pasajero tenía acompañantes durante el viaje o al menos un familiar a bordo, este atributo también podría llegar a influenciar el si se salvo o no, dado que por cuestiones sentimentales podrias dejarle tu lugar en algún bote salvavidas a tu familiar, pero llegar a una conclusión así conlleva a analizar muchos otros factores que son irrelevantes en este caso. Conocer el atributo ticket es algo irrelevante, dado que solo era para control de entrada al barco. El atributo de cabin es usado indica donde estuvo habitando el pasajero durante el viaje, algunos son desconocidos, pero conociendo la clase en que viajaba podrías darte una idea que tipo de cabina se le asignó. El puerto donde embarcó indicado en el atributo embarked, no influye tanto en si sobrevivió o no, dado que en todos los puertos abordaron tanto personas ricas como pobre, niños o adultos, etc.
+
+
+
 
 \hypertarget{limpieza}{%
 \subsection{3. Limpieza de los datos}\label{limpieza}} 
