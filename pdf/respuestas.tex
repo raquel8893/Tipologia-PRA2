@@ -96,7 +96,7 @@
 \hypertarget{descripcion}{%
 \subsection{1. Descripción del dataset}\label{descripcion}}
 
-El conjunto de datos que vamos a analizar se ha obtenido a partir de este enlace https://www.kaggle.com/c/titanic/.\\ Este conjunto de datos contiene información de parte de los pasajeros que subieron a bordo del transatlántico Titanic, el 10 de abril de 1912 desde el puerto Southampton y los pasajeros que se incorporaron en los puertos de Cherburgo, Francia, y en Queenstown en Irlanda. Entre estos pasajeros se encuentran pasajeros de muy diferentes clases sociales. En el incidente ocurrido el 14 de abril de 1912, murieron 1514 personas de las 2223 que abordaron. El estricto protocolo de salvamento que se utilizó seguía el principio "Mujeres y niñas primero".\\
+El conjunto de datos que vamos a analizar se ha obtenido a partir de este enlace https://www.kaggle.com/c/titanic/.\\ Este conjunto de datos contiene información de parte de los pasajeros que subieron a bordo del transatlántico Titanic, el 10 de abril de 1912 desde el puerto Southampton y los pasajeros que se incorporaron en los puertos de Cherburgo, Francia, y en Queenstown en Irlanda. Entre estos pasajeros se encuentran pasajeros de muy diferentes clases sociales. En el incidente murieron 1514 personas de las 2223 que abordaron. El estricto protocolo de salvamento que se utilizó seguía el principio "mujeres y niños primero".\\
 En los dataset cada fila representa a una persona. Hay información de un total de 1309 pasajeros, divididos en dos dataset: 891 en el conjunto de train y 418 en el conjunto de test. Las columnas describen diferentes atributos sobre la persona, tenemos un total de 12 columnas en el dataset de train, y 11 columnas en el dataset de test, ya que no se incluye la columna survived que es la que se desea predecir.
 \begin{itemize}
 \tightlist
@@ -107,7 +107,7 @@ En los dataset cada fila representa a una persona. Hay información de un total 
 \item
   \textbf{Pclass:} Clase en la que viajaba el pasajero (1ª, 2ª o 3ª).\\ 
 \item
-  \textbf{Name:}Nombre del pasajero.\\ 
+  \textbf{Name:} Nombre del pasajero.\\ 
 \item
   \textbf{Sex:} Sexo del pasajero, femenino o masculino.\\
 \item
@@ -118,11 +118,11 @@ En los dataset cada fila representa a una persona. Hay información de un total 
   \textbf{Parch:} Número de padres (del pasajero) que estaban a bordo.\\
 \item
   \textbf{Ticket:} Número de ticket que el pasajero entregó al abordar.\\
-  \item
-  \textbf{Fare:} Indica el precio que el pasajero pago para obtener su pasaje.\\
-  \item
+\item
+  \textbf{Fare:} Indica el precio que el pasajero pagó para obtener su pasaje.\\
+\item
   \textbf{Cabin:} Indica la cabina que fue asignada al pasajero.\\
-  \item
+\item
   \textbf{Embarked:} Indica el puerto donde el pasajero abordó (C = cherbourg, Q = Queenstown, S= Southampton).\\
 \end{itemize}
 
@@ -139,54 +139,280 @@ Comenzamos con la carga de datos, para realizar la selección de las variables d
   	\includegraphics[width=1.0\textwidth]{carga_datos}
 \end{center}
 
-Mostramos también el tipo de datos y un resumen de las variables
+Mostramos el tipo de datos
 
 \label{imagen}
   	\begin{center}
   	\includegraphics[width=1.0\textwidth]{tipo_datos}
 \end{center}
 
+Vemos que las variables Survived, Pclass son números enteros, pero a pesar de ello estas variables son consideradas categóricas ya que representan categorías o grupos mutuamente excluyentes. Las variables de tipo object también son variables categóricas. PassengerId, Age, SibSp, Parch y Fare serían variables cuantitativas.
+
+Mostramos también un resumen de las variables.
+
 \label{imagen}
   	\begin{center}
   	\includegraphics[width=1.0\textwidth]{resumen_datos}
 \end{center}
 
+Al analizar las variables hemos considerado que las variables mas representativas son:
 
-Analizadas las variables presentes en el dataset, las variables más representativas son: survived, pcclas, sexo, age y fare. el atributo survival es imprescindible para saber quien sobrevivió al incidente, los atributos pcclas y fare, pueden darnos noción de que tanto influye la posición económica al momento de rescatar a alguien, con el atributo de age y sex, podremos corroborar si realmente al momento de evacuar, mujeres y niños fueron prioridad. Los atributos omitidos: name, sibsp, parch, ticket, cabin, *embarked. El nombre de los pasajeros almacenado en el atributo name puede llegar a influenciar el si sobrevivió o no, dado que algunas personas su nombre es “importante” pero con el fare y clase en la que viajaba es posible saber si tenía buena posición económica. sibsp y parch indican si un pasajero tenía acompañantes durante el viaje o al menos un familiar a bordo, este atributo también podría llegar a influenciar el si se salvo o no, dado que por cuestiones sentimentales podrias dejarle tu lugar en algún bote salvavidas a tu familiar, pero llegar a una conclusión así conlleva a analizar muchos otros factores que son irrelevantes en este caso. Conocer el atributo ticket es algo irrelevante, dado que solo era para control de entrada al barco. El atributo de cabin es usado indica donde estuvo habitando el pasajero durante el viaje, algunos son desconocidos, pero conociendo la clase en que viajaba podrías darte una idea que tipo de cabina se le asignó. El puerto donde embarcó indicado en el atributo embarked, no influye tanto en si sobrevivió o no, dado que en todos los puertos abordaron tanto personas ricas como pobre, niños o adultos, etc.
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Survived:} Es imprescindible para saber quien sobrevivió al accidente.\\
+\item
+  \textbf{Pclass y Fare:} Nos puede dar información de la influencia del estatus social y económico a la hora de realizar el proceso de evacuación .\\ 
+\item
+  \textbf{Sex y Age:} podremos comprobar si realmente al momento de evacuar se cumplió el protocolo de salvamento "mujeres y niños primero".\\
+\end{itemize}
+En cuanto a los atributos omitidos name y cabin no nos da ninguna información relevante, mas allá de la que ya obtenemos con Pclass y fare. Sibsp y parch no nos dan ningún dato que podamos analizar. Ticket es un dato irrelevante. Embarked tampoco influye en si sobrevivió o no, dado que en todos los puertos embarcaron personas de diferentes edades, sexo y clases sociales.
 
+Seleccionamos las columnas que consideramos representativas: 
 
-
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{variables}
+\end{center}
 
 \hypertarget{limpieza}{%
 \subsection{3. Limpieza de los datos}\label{limpieza}} 
 
 \hypertarget{ceros}{%
 \subsubsection{3.1 Elementos vacíos}\label{ceros}}
-¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?. 
+
+Primero observamos cuantos valores ceros tenemos por cada columna en los dos dataset
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{ceros}
+\end{center}
+
+Vemos que tenemos valores cero en los campos Survived y Fare. En el caso de Survived el valor 0 es un valor correcto ya que como hemos dicho anteriormente este campo tiene el valor 0 cuando la persona no sobrevivió y valor 1 cuando la persona no sobrevivió. En el caso de Fare habíamos visto que significa el precio que el pasajero pagó para obtener su pasaje, por tanto también podríamos considerar que es un valor válido, en caso de que el pasaje haya salido gratis por alguna promoción. Por tanto consideramos que no es necesario tratar estos elementos cero.
+
+Observamos también los valores nulos
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{nulos}
+\end{center}
+
+Vemos que tenemos valores nulos en los campos Age y Fare. En este caso si consideramos que es necesario tratar estos datos nulos. Para tratarlos hemos decidido usar la media ya que se trata de valores numéricos.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{nulos_corregidos}
+\end{center}
+
 
 \hypertarget{extremos}{%
 \subsubsection{3.2 Valores extremos}\label{extremos}}
-Identificación y tratamiento de valores extremos.
+
+Los valores extremos son aquellos datos que se encuentran muy alejados de la distribución normal de una variable o población. Para poder identificar estos valores extremos utilizamos un boxplot.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{boxplot1}
+\end{center}
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{boxplot2}
+\end{center}
+
+Vemos que parecen existir valores extremos en Fare y Age. En Age vemos que los puntos más extremos en el gráfico se encuentran por debajo de 100, por lo que no se podrían considerar errores en los datos ya que se encuentran dentro de la distribución normal de la población, aunque la edad media de los pasajeros sea alrededor de los 30 años.\\
+Para hacer un análisis más en profundidad de los valores Fare para comprobar si se tratan o no de valores extremos, vamos a representar el valor Fare dependiendo de la clase en la que viajaban los pasajeros.
+Vemos que el valor más alto de tarifa es aproximadamente 510, y además pertenece un pasajero de primera clase, por lo que parece que se encuentra dentro de la distribución normal de la población y no lo consideraríamos un error en los datos.
+Por tanto, no es necesario realizar ninguna transformación en los datos para tratar los valores extremos.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{fare}
+\end{center}
+
 \hypertarget{analisis}{%
 \subsection{4. Análisis de los datos}\label{analisis}}
 
 \hypertarget{seleccion}{%
 \subsubsection{4.1 Selección del grupo de datos}\label{seleccion}}
-Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar). 
+
+Para hacer el análisis de datos vamos a utilizar los dataset obtenido en los pasos anteriores, con la selección de las variables representativas y la corrección de los valores nulos. Para el dataset de test lo vamos a unir con el csv gender submission que tiene la información del campo Survived para el dataset de test. A continuación concatenamos el dataset de train con el dataset de test
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{datos_test}
+\end{center}
+
 \hypertarget{normalidad}{%
 \subsubsection{4.2  Normalidad y homogeneidad de la varianza}\label{normalidad}}
-Comprobación de la normalidad y homogeneidad de la varianza. 
+Para comprobar la \textbf{normalidad} de las variables numéricas Age y Fare aplicaremos el test Shapiro-Wilk. La hipótesis nula es que la variable sigue una distribución normal. El nivel de significancia será 
+$\alpha$=0.05, si el p-valor es inferior a este, rechazaremos la hipótesis nula. 
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{normalidad}
+\end{center}
+
+Ninguna de las dos variables estudiadas sigue una distribución normal. Sin embargo, dado que tenemos un gran número de observaciones (1309 > 20) podemos asumir el teorema central del límite. La distribución de la media de las variables estudiadas, gracias a la gran cantidad de observaciones, seguirá una distribución normal con una media de población $\mu$ y una varianza $\frac{\sigma^2}{N}$.
+
+Para comprobar la \textbf{homocedasticidad} de las variables usaremos el test de Levene, ya que debido a la gran cantidad de observaciones consideramos que nuestros datos siguen una distribución normal. La hipótesis nula asume igualdad de varianza.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{homocedasticidad}
+\end{center}
+
+
+Dado que todas las combinaciones resultan en un p-valor inferior al nivel de significancia (< 0,05), se rechaza la hipótesis nula de homocedasticidad y se concluye que las variables presentan varianzas estadísticamente diferentes para los diferentes grupos.
 
 \hypertarget{estadistica}{%
 \subsubsection{4.3  Pruebas estadísticas para comparar los grupos de datos}\label{estadistica}}
-Aplicación de pruebas estadísticas para comparar los grupos de datos. En función de los datos y el objetivo del estudio, aplicar pruebas de contraste de hipótesis, correlaciones, regresiones, etc. Aplicar al menos tres métodos de análisis diferentes. 
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Comparación de medias (t-test)}\\
+  En este caso, podremos contrastar la diferencia de medias ya que los tamaños de las muestras son superiores a treinta. El teorema del límite central nos dice que si los tamaños de las muestras son superiores a 30, el estadístico de contraste es una observación de una variable aleatoria que se distribuye aproximadamente como una N(0,1).
+  \label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{medias1}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{medias2}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{medias3}
+\end{center}
+\item
+  \textbf{Correlación}\\
+  \label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{correlacion}
+\end{center} 
+\item
+  \textbf{Comparación de más de dos grupos - ANOVA}\\
+Compararemos si hay diferencia entre la edad media de los supervivientes frente a los que no y clase, separando las observaciones por sexo:\\
+
+- H$\_$0: Las medias poblacionales $\mu$k de Edad para las distintas clases entre si, los supervivientes frente a los no y el cruce de las dos categorias son iguales.\\
+- H$\_$1: de Edad para las distintas clases entre si, los supervivientes frente a los no y el cruce de las dos categorias no son iguales.\\
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{ANOVA}
+\end{center}
+
+Para los hombres:
+\begin{enumerate}
+\item vemos que la media entre supervivientes y no supervivientes no es igual (p-valor = 2.25 * 10\^{}-6, muy inferior al nivel de significancia 0.05).
+\item vemos que la media entre clases tampoco es igual entre ellas.(p-valor = 9.33 * 10\^{}-33, muy inferior al nivel de significancia 0.05).
+\item por último, vemos que la intersección de supervivencia con clase si que tiene medias iguales entre clases (p-valor = 0.76... > 0.05).
+\end{enumerate}
+Para las mujeres:
+\begin{enumerate}
+\item vemos que la hipóstesis nula entre supervivientes y no supervivientes no se puede rechazar, por lo que las medias son iguales (p-valor = 0.29..., superior al nivel de significancia 0.05).
+\item vemos que la media entre clases no es igual entre ellas (p-valor = 7.36 * 10\^{}-17, muy inferior al nivel de significancia 0.05).
+\item por último, vemos que la intersección de supervivencia con clase si que tiene medias iguales entre clases (p-valor = 0.38... > 0.05).\\
+\end{enumerate}
+\item
+\textbf{Regresión}\\
+Para finalizar podemos crear un modelo de regresión logística que teniendo en cuenta las variables explicativas que hemos estado estudiando nos sirva para predecir/clasificar si un pasajero sobreviviría o moriría en el accidente:
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{regresion1}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{regresion2}
+\end{center}
+
+Age tiene un P-valor < a 0.05 por lo que no es una variable que influya en el resultado en comparación con el resto de categorías, la podemos sacar del modelo.
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{regresion3}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{regresion4}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{regresion5}
+\end{center}
+
+El modelo obtenido tiene un rendimiento perfecto. Consigue clasificar sin errores los casos proporcionados.
+\end{itemize}
+
 
 \hypertarget{representacion}{%
 \subsection{5. Representación de los resultados}\label{representacion}}
-Representación de los resultados a partir de tablas y gráficas. 
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion}
+\end{center}
+
+Se puede observar resultados en línea con los análisis estadísticos del apartado anterior. 
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion2}
+\end{center}
+Los hombres fueron la mayoría de las victimas del accidente. Sin embargo, la clase también influyo en las víctimas femeninas.
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion3}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion4}
+\end{center}
+
+
+Unas visualizaciones que nos permiten ver la misma conclusión que los gráficos anteriores. Rectas paralelas nos indican disociación entre las variables explicativas. Quiebros de las rectas indican diferencias de las medias.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion5}
+\end{center}
+Se puede apreciar claramente la sustitución de los valores nulos por la media (la barra alta en el centro de la gráfica)
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion6}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion7}
+\end{center}
+
+Añadimos diferenciación mediante color entre los supervivientes y no supervivientes:
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion8}
+\end{center}
+
+El línea con los estudios estadísticos realizados anteriormente, vemos que ninguna de estas dos variables aporta una diferenciación clara a la hora de determinar la supervivencia.
+
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion9}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion10}
+\end{center}
+\label{imagen}
+  	\begin{center}
+  	\includegraphics[width=1.0\textwidth]{representacion11}
+\end{center}
+
+Podemos apreciar, que en el caso de las mujeres, cuanto más jovenes menos proporción de supervivientes. En el caso de los hombres. Los niños y adolescentes tuvieron una proporción de supervivientes superior a la del resto de franjas de edad.
+Por clase, podemos ver que (con la excepción de la primera clase) mayor edad supuso menor proporción de supervivencia.
+
 \hypertarget{resolucion}{%
 \subsection{6. Resolución del problema}\label{resolucion}}
-Resolución del problema. A partir de los resultados obtenidos, ¿cuáles son las conclusiones? ¿Los resultados permiten responder al problema? 
+
+Los resultados obtenidos nos han permitido responder al problema que comentábamos al principio, cuales fueron las variables más determinantes para la supervivencia y comprobar por ejemplo si se cumplió el protocolo "mujeres y niños primero". Como hemos podido ver en el análisis y la representación gráfica, la población femenina tuvo una mayor proporción de población superviviente que la población masculina. También hemos podido comprobar, que dentro de la población masculina, la edad influía en la supervivencia, siendo los niños y los adolescentes los que tenían mayor porcentaje de supervivencia. De este modo podemos concluir que se cumplió el protocolo "mujeres y niños primero" a la hora de evacuar.
+También hemos podido comprobar que la clase también influyó en la supervivencia, siendo los de clases más altas los que tienen mas porcentaje de supervivencia. Por tanto podemos concluir que las variables seleccionadas para el análisis fueron las más determinantes para la supervivencia o no de los pasajeros.
+
+
 \hypertarget{codigo}{%
 \subsection{7. Código}\label{codigo}}
 
@@ -197,19 +423,58 @@ dataset generado pueden ser accedidos a través de
 \hypertarget{recursos}{%
 \section{Recursos}\label{recursos}}
 
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-.\\
+Comparación de media (t-test).\\
+\begin{itemize}
+\tightlist
 \item
-.\\
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest$\_$ind.html.\\
 \item
-.\\
+  \text https://towardsdatascience.com/inferential-statistics-series-t-test-using-numpy-2718f8f9bf2f.\\ 
+\end{itemize}
 \item
-.\\
+Comprobación de normalidad.\\
+\begin{itemize}
+\tightlist
 \item
-.\\
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.shapiro.html.\\ 
+\end{itemize}
+\item
+Comparación de homocedasticidad.\\
+\begin{itemize}
+\tightlist
+\item
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fligner.html.\\ 
+\item
+  \text https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.fligner.html.\\ 
+\end{itemize}
+\item
+Comparaciones de distr no parametricos.\\
+\begin{itemize}
+\tightlist
+\item
+  \text https://machinelearningmastery.com/nonparametric-statistical-significance-tests-in-python/.\\
+\item
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html.\\ 
+ \item
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html.\\ 
+\end{itemize}
+\item
+ANOVA.\\
+\begin{itemize}
+\tightlist
+\item
+  \text https://ariepratama.github.io/How-to-Use-1-Way-Anova-in-Python/.\\
+\item
+  \text https://www.marsja.se/four-ways-to-conduct-one-way-anovas-using-python/.\\ 
+ \item
+  \text https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.f$\_$oneway.html.\\ 
+\end{itemize}
+
 
 \end{enumerate}
 
