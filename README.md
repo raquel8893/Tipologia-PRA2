@@ -1,6 +1,6 @@
 # Práctica 2: Limpieza y análisis de datos
 ## Descripción
-Esta práctica se ha realizado como actividad de la asignatura Tipología y ciclo de vida de los datos, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. En ella se realiza la limpieza y análisis de datos del dataset titanic mediante el lenguaje de programación Pyhton.
+Esta práctica se ha realizado como actividad de la asignatura Tipología y ciclo de vida de los datos, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. En ella se realiza la limpieza y análisis de datos del dataset titanic mediante el lenguaje de programación Python.
 
 ## Miembros del equipo
 La actividad ha sido realizada por Raquel Gómez Pérez y Jorge Serra Planelles.
