@@ -23,7 +23,6 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ﬂigner.html.
 https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.ﬂigner.html.
 * Comparaciones de distr no parametricos.
 https://machinelearningmastery.com/nonparametric-statistical-signiﬁcancetests-in-python/.
-12
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html.
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html.
 * ANOVA.
